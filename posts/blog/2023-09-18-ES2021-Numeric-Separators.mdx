@@ -1,0 +1,29 @@
+---
+title: 'ES2021(ES12) - Numeric Separators'
+description: 'Numeric Separators 란?'
+date: 2023-09-18
+---
+
+Javascript를 사용하면서 큰 숫자를 표현하면 한눈에 구분하기 힘든 경우가 있다.
+
+이러한 큰 숫자를 `_`로 구분 함으로써 숫자 단위를 시각적으로 한눈에 볼 수 있게 해주는 문법이다.
+
+이 기호는 ES2021(ES12)에 추가된 문법이다.
+
+아래 예제 코드로 살펴보자
+
+```javascript
+//기존 코드
+const NUM = 1000000000 // 10억
+
+//Numeric Separators사용
+const NUM = 1_000_000_000 // 10억
+```
+
+위와 같이 구분하고자 하는 단위에 `_`를 사용하기만 하면 된다.
+
+이러한 문법을 사용함으로써 큰 숫자를 사용해도 한눈에 볼 수 있기 때문에 굉장히 편할 것 같다.
+
+### 📚출처
+
+- https://github.com/tc39/proposal-numeric-separator

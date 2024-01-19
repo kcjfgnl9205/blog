@@ -1,0 +1,42 @@
+---
+title: '[Git] There is no tracking information for the current branch.'
+description: '[Git] There is no tracking information for the current branch.'
+date: 2023-10-06
+---
+
+github에 push 하려고하니까 에러가 발생해서 Github와 연결을 끊고 다시 연결하는 작업을 진행했다.([내용참고](https://blog-three-peach-22.vercel.app/blog/2023-10-06-Git-remote-Invalid-username-or-password))
+
+그리고 git pull로 원격 저장소에 있는 정보를 가져오려고 하니까 아래와 같은 에러가 발생했다..
+
+```bash
+git pull
+
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> feature/login
+```
+
+로컬에 있는 브랜치가 원격저장소의 어떤 브랜치를 참조해야할지 모르기 때문에 발생하는 에러인듯하다.
+
+현재 `feature/login`이라는 로컬 브랜치에서 원격저장소의 어떤 브랜치정보를 참조할지 설정이 필요한데, 아래와 같이 설정하라고 알려주고있다.
+
+```bash
+git branch --set-upstream-to=origin/<branch> feature/login
+```
+
+현재 로컬에 있는 `feature/login`브랜치는 원격 저장소의 `origin/feature/login`브랜치를 참조할 것이기 때문에 아래와 같이 설정해줬다.
+
+```bash
+git branch --set-upstream-to=origin/feature/login feature/login
+```
+
+이렇게 설정하고 다시 `git pull`을 사용하면 원격저장소에서 해당하는 정보를 가져오는 것을 확인할 수 있다.
+
+> 📕 현재는 원격저장소에있는 `origin/feature/login`와 로컬저장소에있는 `feature/login`브랜치만을 연결해줬다.  
+> 로컬에 있는 다른 브랜치에서 원격저장소의 다른 브랜치 정보를 가져오려면 위와같은 설정을 다시 해줘야 한다.

@@ -1,0 +1,36 @@
+---
+title: 'Input elements should have autocomplete attributes (suggested: current-password)'
+description: 'Input elements should have autocomplete attributes'
+date: 2023-10-04
+---
+
+리액트에서 로그인 화면을 개발하는 중인데 `input`태그를 이용해서 유저의 `password`입력을 받을 때 아래와 같은 경고가 나타났다.
+
+> [DOM] Input elements should have autocomplete attributes (suggested: "current-password"):
+
+<img src='/posts/blog/2023/2023-10-04-image-01.png' alt='' />
+
+`input`태그는 `autocomplete`속성을 가져야 하고, `current-password`를 제안한다는 메시지가 표시된다.
+
+이 경고는 크롬 브라우저에서만 발생하는 문제인거 같다.
+
+크롬에서는 모든 `form data` 를 자동저장 및 자동완성 하려고 하기 때문에
+
+웹 개발자에게 브라우저에 더 편리한 양식 요소 범위를 준수하라고 권고해서 위와 같은 경고가 표시되는거라고 한다..
+
+아래와 같이 `autocomplete`설정을 수정하면 해결할 수 있다!
+
+`autocomplete`는 `input`태그에서 자동 완성 기능을 사용할지 여부를 정하는 옵션인데 이번에는 `off`로 자동완성기능을 끄고 진행을 해야겠다..
+
+```html
+<!-- bad -->
+<input type="password" name="password" />
+
+<!-- good -->
+<input type="password" name="password" autocomplete="on" />
+<input type="password" name="password" autocomplete="off" />
+```
+
+### 📚 참고
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)

@@ -1,0 +1,70 @@
+---
+title: 'Rate limiting이란?'
+description: 'Rate limiting'
+date: 2024-01-02
+---
+
+<img src='/posts/blog/2024/2024-01-02-image-01.png' alt='image' />
+### 단시간에 대량의 채팅을 보낸다면?
+
+이번에 진행한 프로젝트에서 Socket.IO를 활용하여 채팅 기능을 구현해봤다.
+
+테스트하는 과정에서 내가 단시간에 대량의 채팅을 쳐봐도 특별히 문제되는 점은 발견하지 못했었다..
+
+하지만, 서비스에 유저가 많아지고 악성 유저가 단시간에 대량의 채팅을 계속 전송하게된다면 성능저하나 서버가 다운이 될 수 있다고 생각했다..
+
+이러한 악성 사용자로부터 서비스를 보호하기 위해 `Rate Limit`을 도입해봤다.
+
+### Rate Limit이란?
+
+Rate Limit은 일정 시간 동안 허용되는 요청의 수를 제한하는 기술이고, 이를 통해 서버에 대한 부하를 분산시키고, 악의적인 요청으로부터 시스템을 보호할 수 있다.
+
+Rate Limit은 일반적으로 초당 요청 횟수나 분당 요청 횟수로 설정되며, 초과할 경우 해당 요청을 차단하거나 지연시킬 수 있다.
+
+### 해결방안
+
+이번에는 유저 IP에 의한 속도 제한을 두는 방향으로 해결을 했다.
+
+```typescript
+import { RateLimiterMemory } from 'rate-limiter-flexible'
+
+const rateLimiter = new RateLimiterMemory({
+  points: 200, // 200 points
+  duration: 60, // per second
+})
+
+export const setWebsockets = async (io: Server) => {
+    // 메세지 전송
+    socket.on(...) => {
+        try {
+            await rateLimiter.consume(socket.handshake.address);
+            // 정상적인 로직
+        } catch (error) {
+            // Rate Limit 초과 시
+            console.error('Rate Limit 초과:', error.message);
+        }
+    )
+}
+```
+
+초당 요청횟수는 내가 설정할 수 있고 이번에는 하나의 IP에서 1분에 200개이상의 요청을 보낼 수 없도록 설정했다.
+
+### 결론
+
+이렇게 설정하면 해결된건가?...
+
+이렇게 하나의 IP에서 분당 200개 이상의 요청을 보낼 수 없게 되었다.
+
+하지만 이렇게 설정할 경우 또 다른 문제가 발생할 수도 있다.
+
+예를들면 하나의 IP안에서 많은 사용자가 있게 된다면 어떻게 될까???
+
+A라는 유저가 60초안에 200개의 요청을 보낸다면 같은 IP에서 60초내에 로그인한 B유저는 요청을 보낼 수 없게된다..
+
+또한, 정상 사용자들에게도 영향을 미칠 수 있게 되는데 설정에 따라 서비스 이용중에 요청 제한이 걸릴 수도 있는데 이렇게 된다면 사용자 경험이 저하될 수 있다..
+
+이러한 측면에서 생각해본다면 Rate Limit 설정을 고려할 때는 정상 사용자들의 편의를 최대한 고려해서 설정을 해야될 필요가 있을 거 같다.
+
+### 참고
+
+- [rate-limiter](https://github.com/animir/node-rate-limiter-flexible/wiki/Overall-example#websocket-single-connection-prevent-flooding)
