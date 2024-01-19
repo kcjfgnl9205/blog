@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '@/globals.css'
 import { Footer, HeaderNavbar } from '@/components/layouts'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
   title: 'Blog - park',
@@ -13,15 +14,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='ko' className='h-full'>
-      <body className='h-full'>
+    <html lang='ko'>
+      <body>
         <div className='h-full bg-light-color text-dark-color dark:bg-dark-color dark:text-light-color'>
-          <div className='flex flex-col h-full max-w-screen-lg mx-auto'>
+          <div className='flex flex-col h-full min-h-screen max-w-screen-lg mx-auto'>
             <HeaderNavbar />
             <main className='flex-1'>{children}</main>
             <Footer />
           </div>
         </div>
+        <Toaster />
       </body>
     </html>
   )
