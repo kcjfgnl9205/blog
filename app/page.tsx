@@ -3,7 +3,8 @@ import { PageLayout } from '@/components/layouts'
 export default function Home() {
   return (
     <PageLayout title='Cheol Hwi Park' description={`👋 Hi there! I'm a junior frontend developer.`}>
-      <SectionLayout name='Introduce'>
+      <></>
+      {/* <SectionLayout name='Introduce'>
         <div></div>
       </SectionLayout>
       <SectionLayout name='Skills'>
@@ -14,7 +15,7 @@ export default function Home() {
       </SectionLayout>
       <SectionLayout name='Education'>
         <div></div>
-      </SectionLayout>
+      </SectionLayout> */}
     </PageLayout>
   )
 }
