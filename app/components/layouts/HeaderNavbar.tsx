@@ -13,6 +13,9 @@ export default function HeaderNavbar() {
         <Link href={PATH.home} className='flex text-lg font-semibold'>
           Home
         </Link>
+        <Link href={PATH.resume} className='flex'>
+          Resume
+        </Link>
         <Link href={PATH.blog} className='flex'>
           Blog
         </Link>

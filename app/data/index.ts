@@ -1,5 +1,8 @@
 import { Blog } from '@/types'
 import { allBlogs } from 'contentlayer/generated'
+import { skills } from '@/data/resume/skills'
+import { experiences } from '@/data/resume/experiences'
+import { projects } from '@/data/resume/projects'
 
 const getBlogs = () => {
   const items: Blog[] = allBlogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -11,4 +14,16 @@ const getBlog = (slug: string) => {
   return doc ?? null
 }
 
-export { getBlogs, getBlog }
+const getResumeSkills = () => {
+  return skills
+}
+
+const getResumeExperiences = () => {
+  return experiences
+}
+
+const getResumeProjects = () => {
+  return projects
+}
+
+export { getBlogs, getBlog, getResumeSkills, getResumeExperiences, getResumeProjects }
