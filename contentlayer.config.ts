@@ -1,4 +1,6 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import remarkGfm from 'remark-gfm'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
@@ -30,4 +32,16 @@ export const Blog = defineDocumentType(() => ({
   },
 }))
 
-export default makeSource({ contentDirPath: 'posts', documentTypes: [Blog] })
+const rehypeOptions = {
+  theme: 'slack-dark',
+  keepBackground: true,
+}
+
+export default makeSource({
+  contentDirPath: 'posts',
+  documentTypes: [Blog],
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [[rehypePrettyCode, rehypeOptions]],
+  },
+})

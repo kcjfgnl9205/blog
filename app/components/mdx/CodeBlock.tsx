@@ -5,7 +5,6 @@ import { toast } from 'react-hot-toast'
 import { MdCheck, MdContentCopy } from 'react-icons/md'
 
 export default function CodeBlock({ children }: React.ComponentProps<'pre'>) {
-  console.log(children)
   const ref = useRef<HTMLPreElement>(null)
   const [copied, setCopied] = useState(false)
 
@@ -29,7 +28,7 @@ export default function CodeBlock({ children }: React.ComponentProps<'pre'>) {
 
   return (
     <div className='group relative my-2 -mx-2 overflow-hidden rounded-lg sm:mx-0 sm:my-5'>
-      <pre ref={ref} className='m-0 rounded-none p-5 leading-4'>
+      <pre ref={ref} className='m-0 rounded-none p-5 leading-6'>
         {children}
       </pre>
       <button
