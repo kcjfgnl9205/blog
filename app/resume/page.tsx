@@ -1,3 +1,5 @@
+import { Metadata } from 'next'
+import metadata from '@/utils/metadata'
 import { Badge } from '@/components/common'
 import { EducationCard, Grid, SectionTitle, GridSidebar, GridMainContent } from '@/components/resume'
 
@@ -81,4 +83,12 @@ export default function Page() {
       </section>
     </div>
   )
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata({
+    title: '이력서',
+    description: '이력서',
+    path: `/resume`,
+  })
 }

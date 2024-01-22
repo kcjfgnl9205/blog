@@ -1,3 +1,5 @@
+import { Metadata } from 'next'
+import metadata from '@/utils/metadata'
 import { Card } from '@/components/blog/Card'
 import { PageLayout } from '@/components/layouts'
 import { getBlogs } from '@/data'
@@ -11,4 +13,12 @@ export default function Page() {
       ))}
     </PageLayout>
   )
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata({
+    title: 'Blog',
+    description: '개발 블로그',
+    path: `/blog`,
+  })
 }
