@@ -3,16 +3,17 @@
 import Link from 'next/link'
 import { MdOutlineDarkMode, MdOutlineWbSunny } from 'react-icons/md'
 import { useDarkMode } from '@/hooks/useDarkmode'
+import { PATH } from '@/constants/path'
 
 export default function HeaderNavbar() {
   const [theme, toggleTheme] = useDarkMode()
   return (
     <header className='flex items-center justify-between border-b border-gray-color w-full p-4'>
       <div className='flex items-center gap-4'>
-        <Link href='/' className='flex text-lg font-semibold'>
+        <Link href={PATH.home} className='flex text-lg font-semibold'>
           Home
         </Link>
-        <Link href='/blog' className='flex'>
+        <Link href={PATH.blog} className='flex'>
           Blog
         </Link>
       </div>
