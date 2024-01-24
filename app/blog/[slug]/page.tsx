@@ -2,6 +2,7 @@ import { Mdx } from '@/components/layouts/Mdx'
 import { getBlog } from '@/data'
 import { notFound } from 'next/navigation'
 import { dateFormat } from '@/utils/date'
+import { Profile } from '@/components/blog/Profile'
 
 export default function Page({ params }: { params: { slug: string } }) {
   try {
@@ -17,6 +18,8 @@ export default function Page({ params }: { params: { slug: string } }) {
           <time className='text-gray-500 text-sm mt-2'>{dateFormat(blog.date)}</time>
         </div>
         <Mdx code={blog.body.code} />
+
+        <Profile />
       </section>
     )
   } catch (error) {
