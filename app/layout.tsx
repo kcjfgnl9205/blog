@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import '@/globals.css'
 import { Footer, HeaderNavbar } from '@/components/layouts'
 import { Toaster } from 'react-hot-toast'
+import { ScrollTopButton } from '@/components/common'
 
 export const metadata: Metadata = {
   title: 'Blog - park',
@@ -21,6 +22,9 @@ export default function RootLayout({
             <HeaderNavbar />
             <main className='flex-1'>{children}</main>
             <Footer />
+          </div>
+          <div className='fixed bottom-8 right-8 lg:bottom-12 lg:right-12'>
+            <ScrollTopButton />
           </div>
         </div>
         <Toaster />

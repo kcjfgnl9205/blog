@@ -11,12 +11,12 @@ export default function metadata(props: MetadataProps): Metadata {
   const description = `개발 블로그 | ${desc}`
 
   return {
+    metadataBase: new URL(process.env.HOST!),
     title: `CheolHwi | ${title}`,
     description,
     openGraph: {
       title,
       description,
-      url: process.env.HOST! + path,
       locale: 'ko_KR',
     },
   }
