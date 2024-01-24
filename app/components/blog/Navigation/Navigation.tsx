@@ -12,6 +12,9 @@ interface Props {
 
 export default function Navigation({ item, next }: Props) {
   const name = next ? '다음 포스트' : '이전 포스트'
+  if (!item.title) {
+    return <div></div>
+  }
 
   return (
     <Link href={`${PATH.blog}/${item.link}`} className='flex border-[1px] border-neutral-200 rounded-lg p-4 w-full'>

@@ -10,20 +10,21 @@ const getBlogs = () => {
 }
 
 const getBlog = (slug: string) => {
-  const index = allBlogs.findIndex((blog) => blog.slug === slug)
+  const blogs = getBlogs()
+  const index = blogs.findIndex((blog) => blog.slug === slug)
   if (index === -1) {
     throw new Error('게시글이 존재하지 않습니다.')
   }
 
   return {
-    blog: allBlogs[index],
+    blog: blogs[index],
     prev: {
-      link: allBlogs[index - 1] && allBlogs[index - 1].slug,
-      title: allBlogs[index - 1] && allBlogs[index - 1].title,
+      link: blogs[index + 1] && blogs[index + 1].slug,
+      title: blogs[index + 1] && blogs[index + 1].title,
     },
     next: {
-      link: allBlogs[index + 1] && allBlogs[index + 1].slug,
-      title: allBlogs[index + 1] && allBlogs[index + 1].title,
+      link: blogs[index - 1] && blogs[index - 1].slug,
+      title: blogs[index - 1] && blogs[index - 1].title,
     },
   }
 }
