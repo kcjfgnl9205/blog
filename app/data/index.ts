@@ -10,8 +10,22 @@ const getBlogs = () => {
 }
 
 const getBlog = (slug: string) => {
-  const doc: Blog | undefined = allBlogs.find((blog) => blog.slug === slug)
-  return doc ?? null
+  const index = allBlogs.findIndex((blog) => blog.slug === slug)
+  if (index === -1) {
+    throw new Error('게시글이 존재하지 않습니다.')
+  }
+
+  return {
+    blog: allBlogs[index],
+    prev: {
+      link: allBlogs[index - 1] && allBlogs[index - 1].slug,
+      title: allBlogs[index - 1] && allBlogs[index - 1].title,
+    },
+    next: {
+      link: allBlogs[index + 1] && allBlogs[index + 1].slug,
+      title: allBlogs[index + 1] && allBlogs[index + 1].title,
+    },
+  }
 }
 
 const getResumeSkills = () => {

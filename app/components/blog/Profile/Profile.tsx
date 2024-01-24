@@ -6,7 +6,7 @@ import { AiFillGithub, AiOutlineMail } from 'react-icons/ai'
 
 export default function Profile() {
   return (
-    <div className='w-full p-4 my-12'>
+    <div className='w-full my-12'>
       <div className='flex gap-4 items-center'>
         <Image src='/user.png' alt='profile' width={100} height={100} />
         <div>

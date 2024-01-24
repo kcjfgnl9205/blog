@@ -14,7 +14,7 @@ export function Mdx({ code }: Props) {
   const Component = useMDXComponent(code)
 
   return (
-    <div className='prose dark:prose-invert flex-1 prose-a:text-sky-600 max-w-full p-4'>
+    <div className='prose dark:prose-invert flex-1 prose-a:text-sky-600 max-w-full'>
       <Component components={components} />
     </div>
   )

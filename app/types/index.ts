@@ -16,6 +16,11 @@ export interface Skill {
   flg: SKILL
 }
 
+export interface BlogNavigation {
+  title: string
+  link: string
+}
+
 export interface ResumePersnalProject {
   name: string
   description: string
