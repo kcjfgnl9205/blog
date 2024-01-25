@@ -3,12 +3,14 @@ import { getBlog } from '@/data'
 import { dateFormat } from '@/utils/date'
 import { Profile } from '@/components/blog/Profile'
 import { Navigation } from '@/components/blog/Navigation'
+import { ScrollProgressBar } from '@/components/blog/ProgressBar'
 
 export default function Page({ params }: { params: { slug: string } }) {
   try {
     const { blog, prev, next } = getBlog(params.slug)
     return (
       <section className='flex flex-col w-full p-4'>
+        <ScrollProgressBar />
         <div className='flex flex-col text-center my-4 lg:my-8'>
           <h1 className='text-3xl font-black inline-block bg-clip-text'>{blog.title}</h1>
           <time className='text-gray-500 text-sm mt-2'>{dateFormat(blog.date)}</time>
