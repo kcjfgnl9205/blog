@@ -1,9 +1,7 @@
 import { Mdx } from '@/components/layouts/Mdx'
 import { getBlog } from '@/data'
 import { dateFormat } from '@/utils/date'
-import { Profile } from '@/components/blog/Profile'
-import { Navigation } from '@/components/blog/Navigation'
-import { ScrollProgressBar } from '@/components/blog/ProgressBar'
+import { Profile, Navigation, ScrollProgressBar } from '@/components/blog'
 
 export default function Page({ params }: { params: { slug: string } }) {
   try {

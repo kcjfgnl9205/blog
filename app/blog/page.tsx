@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import metadata from '@/utils/metadata'
-import { Card } from '@/components/blog/Card'
+import { Card } from '@/components/blog'
 import { PageLayout } from '@/components/layouts'
 import { getBlogs } from '@/data'
 
