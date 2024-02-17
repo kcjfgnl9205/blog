@@ -1,0 +1,45 @@
+---
+title: '[VSCode Extensions] Code Spell Checker'
+description: 'vscode에서 나타나는 cSpell-Unknown-word란?'
+date: 2024-02-17
+---
+
+### Code Spell Checker 익스텐션이란?
+
+코드 및 문서에 잘 작동하는 기본 맞춤법을 검사해주는 익스텐션이다.
+
+이 맞춤법 검사기의 목표는 오탈자를 낮게 유지하면서 일반적인 맞춤법 오류를 찾아내는 데 도움을 주는 역할을 하고 있다.
+
+### 문제점
+
+하지만 해당 익스텐션을 사용하다보면 Workspace Dictionary에 없는 단어라면 파란색 밑줄로 `Unknown word`라고 나타나는 경우가 있다.
+
+개발하면서 문제가 생기진 않지만 아래와 같이 코드를 읽을 때 굉장히 거슬리는거 같다..🥲
+
+<img src='/posts/blog/2024/2024-02-17-image-01.png' alt='image' />
+
+이러한 문제를 해결해보자.
+
+### 해결방안
+
+맞춤법 검사 구성은 `VSCode 기본설정` 또는 `cspell.json`구성 파일을 통해 제어할 수 있다.
+
+파일이 적용되는 우선순위는 아래와 같다.
+
+1. 작업공간 폴더 `cspell.json`
+2. 작업공간 폴더 `.vscode/cspell.json`
+3. VS Code 기본 설정
+
+1번 방법을 사용해서 문제를 해결하려고 하는데
+
+아래와 같이 프로젝트 최상위 경로에 `cspell.json`파일을 추가해서 Workspace Dictionary에 단어를 추가해주면 된다.
+
+<img src='/posts/blog/2024/2024-02-17-image-02.png' alt='image' />
+
+위와 같이 문제가 생긴 단어를 Workspace Dictionary에 추가해주면 아래와 같이 맞춤법 검사를 통과하게 된다.
+
+<img src='/posts/blog/2024/2024-02-17-image-03.png' alt='image' />
+
+### 출처
+
+- [code-spell-checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
