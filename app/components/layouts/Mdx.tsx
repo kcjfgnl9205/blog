@@ -1,13 +1,14 @@
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { CodeBlock, MdxLink } from '@/components/mdx'
+import { PreBlock, MdxLink, CodeBlock } from '@/components/mdx'
 
 interface Props {
   code: string
 }
 
 const components = {
-  pre: CodeBlock,
+  pre: PreBlock,
   a: MdxLink,
+  code: CodeBlock,
 }
 
 export function Mdx({ code }: Props) {

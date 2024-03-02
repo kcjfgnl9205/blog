@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko'>
-      <body>
+      <body suppressHydrationWarning={true}>
         <div className='h-full bg-light-color text-dark-color dark:bg-dark-color dark:text-light-color'>
           <div className='flex flex-col h-full min-h-screen max-w-screen-lg mx-auto'>
             <HeaderNavbar />
